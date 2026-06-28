@@ -1,0 +1,127 @@
+/* Базові налаштування шрифтів */
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    box-sizing: border-box; /* Щоб падінги не розривали блоки */
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: #f5f5f5; /* Легкий сірий фон навколо сторінки */
+}
+
+/* Контейнер сторінки */
+body {
+    width: 800px;
+    margin: 0 auto;
+    border: 1px solid #dcdcdc;
+    background-color: #ffffff; /* Білий фон для самого резюме */
+    box-shadow: 0 0 10px rgba(0,0,0,0.05); /* Легка тінь для об'єму */
+}
+
+/* Сучасна гнучка навігація (без float) */
+nav {
+    position: fixed;
+    max-width: 800px;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Рядок на флексах */
+    background-color: #2c3e50; /* Глибокий темно-синій фінансовий колір */
+}
+
+ul li {
+    flex: 1; /* Рівномірно розподіляє пункти меню по ширині */
+}
+
+ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 15px 10px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+ul li a:hover {
+    background-color: #34495e;
+}
+
+/* Головний контент та скрол-бокс */
+main {
+    margin-top: 50px;
+    height: calc(100vh - 100px); /* Автоматична висота під ваш екран */
+    overflow-y: scroll;
+    padding: 20px;
+}
+
+/* Налаштування якорів, щоб меню не перекривало заголовки */
+h1, h2 {
+    scroll-margin-top: 30px;
+    color: #2c3e50;
+    border-bottom: 20px;
+}
+
+h1 { font-size: 28px; margin-bottom: 20px; }
+h2 { font-size: 22px; margin-top: 30px; border-bottom: 2px solid #ecf0f1; padding-bottom: 5px; }
+h3 { font-size: 18px; margin: 0 0 5px 0; color: #34495e; }
+
+/* Відступи для тексту та секцій */
+section, p {
+    margin-bottom: 15px;
+    line-height: 1.6; /* Краща читабельність тексту */
+    color: #333333;
+}
+
+/* Красиве оформлення профілю (Фото + Текст) */
+.profile-content {
+    display: flex;
+    gap: 20px; /* Відступ між фото та текстом */
+    align-items: flex-start;
+}
+
+.profile-img {
+    width: 150px;
+    height: auto;
+    border-radius: 6px; /* Трохи заокруглені кути */
+    border: 1px solid #ddd;
+}
+
+.profile-text {
+    flex: 1;
+}
+
+/* Спеціальні картки для досвіду та освіти */
+.card {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-left: 4px solid #2c3e50;
+    margin-bottom: 15px;
+}
+
+.date {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin-bottom: 10px;
+}
+
+/* Стильний футер */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+footer p {
+    margin: 0;
+    color: #bdc3c7;
+    font-size: 14px;
+}
