@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPortal - Панель управління</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light d-flex flex-column min-vh-100">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-white text-uppercase" href="#">
+                <span class="text-primary">Edu</span>Portal
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Schedules</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Account
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Профіль</a></li>
+                            <li><a class="dropdown-item" href="#">Налаштування</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#">Вийти</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-4 flex-grow-1">
+        
+        <section class="card p-4 p-md-5 mb-4 bg-white border-light-subtle rounded-3">
+            <div class="row">
+                <div class="col-12 text-start">
+                    <h1 class="display-5 fw-bold text-dark">Welcome back, Academic Developer!</h1>
+                    <p class="fs-5 text-muted max-w-xl">This reference implementation demonstrates a fully responsive dashboard using the Bootstrap 5.3 grid layout, advanced system forms, panels (cards), and navigation bars.</p>
+                    <div class="d-flex gap-2 pt-2">
+                        <button class="btn btn-primary px-4 fw-medium" type="button">View Syllabus</button>
+                        <button class="btn btn-outline-secondary px-4 fw-medium" type="button">Quick Start</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="row g-4 mb-5">
+            
+            <div class="col-12 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-header bg-primary text-white fw-bold py-3 fs-6">
+                        Frontend Engineering
+                    </div>
+                    <div class="card-body d-flex flex-column p-4">
+                        <h4 class="card-title fw-bold fs-5 mb-2">Bootstrap 5 Component Mastery</h4>
+                        <p class="card-text text-muted fs-6 mb-4">Learn to master responsive utilities, grid breakdowns, flex layout mappings, and unified CSS variable customizations.</p>
+                        
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between text-muted fs-7 mb-1">
+                                <span>Progress</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="progress mb-4" style="height: 8px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <button class="btn btn-outline-primary w-100 py-2 fw-medium fs-6">Resume Module</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-header bg-warning text-dark fw-bold py-3 fs-6">
+                        Upcoming Deadlines
+                    </div>
+                    <div class="card-body d-flex flex-column p-4">
+                        <div class="list-group list-group-flush w-100">
+                            <div class="d-flex justify-content-between align-items-start py-2 border-bottom">
+                                <div>
+                                    <h5 class="fw-bold fs-6 mb-0">Grid System Layout Lab</h5>
+                                    <small class="text-muted fs-7">Due in 2 days</small>
+                                </div>
+                                <span class="badge bg-danger rounded-pill px-2">High</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-start py-2 border-bottom">
+                                <div>
+                                    <h5 class="fw-bold fs-6 mb-0">Form Validation Hook</h5>
+                                    <small class="text-muted fs-7">Due in 5 days</small>
+                                </div>
+                                <span class="badge bg-secondary rounded-pill px-2">Medium</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-start py-2">
+                                <div>
+                                    <h5 class="fw-bold fs-6 mb-0">Accessible Navbar Audit</h5>
+                                    <small class="text-muted fs-7">Due next week</small>
+                                </div>
+                                <span class="badge bg-info text-dark rounded-pill px-2">Low</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-dark w-100 py-2 fw-medium mt-auto fs-6">View All Tasks</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-header bg-dark text-white fw-bold py-3 fs-6">
+                        Academic Overview
+                    </div>
+                    <div class="card-body d-flex flex-column p-4">
+                        <div class="row g-3 text-center mb-4">
+                            <div class="col-6">
+                                <div class="bg-light p-3 rounded border">
+                                    <div class="fs-3 fw-bold text-primary">4.8</div>
+                                    <div class="fs-7 text-uppercase text-muted fw-medium">Current GPA</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="bg-light p-3 rounded border">
+                                    <div class="fs-3 fw-bold text-success">12</div>
+                                    <div class="fs-7 text-uppercase text-muted fw-medium">Passed</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="bg-light p-3 rounded border">
+                                    <div class="fs-3 fw-bold text-warning">2</div>
+                                    <div class="fs-7 text-uppercase text-muted fw-medium">Active</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="bg-light p-3 rounded border">
+                                    <div class="fs-3 fw-bold text-info">98%</div>
+                                    <div class="fs-7 text-uppercase text-muted fw-medium">Attendance</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-secondary w-100 py-2 fw-medium mt-auto fs-6">Download Transcript</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card shadow-sm p-4 p-md-5 border-0 bg-white mb-4">
+            <h2 class="fw-bold mb-1 fs-3">Course Registration & Audit</h2>
+            <p class="text-muted mb-4 fs-6">Please complete the configuration profile below to assign student groups and resources.</p>
+            
+            <form>
+                <fieldset class="border rounded-3 p-4 mb-4 custom-fieldset position-relative">
+                    <legend class="float-none w-auto px-2 fs-6 fw-bold text-primary mb-0">Personal Information</legend>
+                    
+                    <div class="row g-3 mt-1">
+                        <div class="col-12 col-md-6">
+                            <label class="form-label text-dark fw-medium fs-6">Full Name</label>
+                            <input type="text" class="form-control" value="John Doe">
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label text-dark fw-medium fs-6">Email Address</label>
+                            <input type="email" class="form-control" value="johndoe@university.edu">
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label text-dark fw-medium fs-6">Security Token (Password)</label>
+                            <input type="password" class="form-control" value="••••••••">
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label text-dark fw-medium fs-6">Enrollment Term Date</label>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="border rounded-3 p-4 mb-4 custom-fieldset position-relative">
+                    <legend class="float-none w-auto px-2 fs-6 fw-bold text-primary mb-0">Course Preferences</legend>
+                    
+                    <div class="row g-4 mt-1">
+                        <div class="col-12 col-md-6">
+                            <label class="form-label text-dark fw-medium fs-6">Primary Development Track</label>
+                            <select class="form-select text-muted">
+                                <option selected>Choose a pathway...</option>
+                                <option value="1">Frontend Engineering</option>
+                                <option value="2">Backend Development</option>
+                                <option value="3">Fullstack Track</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-12 col-md-6">
+                            <label class="form-label text-dark fw-medium fs-6 d-block mb-2">Prior UI Framework Experience</label>
+                            <div class="d-flex flex-wrap gap-3 pt-1">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="experience" id="expNone" checked>
+                                    <label class="form-check-label fs-6 text-dark" for="expNone">None</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="experience" id="expSome">
+                                    <label class="form-check-label fs-6 text-dark" for="expSome">Some (1-2 Projects)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="experience" id="expAdvanced">
+                                    <label class="form-check-label fs-6 text-dark" for="expAdvanced">Advanced</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label text-dark fw-medium fs-6">Statement of Academic Goals</label>
+                            <textarea class="form-control" rows="3" placeholder="Briefly specify what you intend to build with Bootstrap layout engines..."></textarea>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-check form-switch pt-1">
+                                <input class="form-check-input custom-switch" type="checkbox" id="flexSwitchCheckChecked" checked>
+                                <label class="form-check-label text-dark fs-6 ms-2" for="flexSwitchCheckChecked">Subscribe to community lab updates and framework patch notes</label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="d-flex justify-content-end gap-2 mt-4">
+                    <button type="reset" class="btn btn-outline-danger px-4">Reset Form</button>
+                    <button type="submit" class="btn btn-success px-4">Submit Registration</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-center py-3 text-white-50 fs-7 mt-auto border-top border-secondary">
+        <div class="container">
+            © 2026 EduPortal. Built as a pedagogical example for responsive CSS grids.
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
