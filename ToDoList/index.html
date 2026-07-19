@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List App</title>
+    <!-- Підключення Bootstrap 5 CSS через CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Додатковий стиль для вказівника миші при наведенні на завдання */
+        .task-item {
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .task-item:hover {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                
+                <h2 class="text-center mb-4 text-secondary fw-bold">My ToDo List</h2>
+                
+                <!-- Блок введення нового завдання -->
+                <div class="input-group mb-4 shadow-sm">
+                    <input type="text" id="taskInput" class="form-control" placeholder="Що потрібно зробити?" aria-label="Task title">
+                    <button class="btn btn-primary px-4 fw-bold" type="button" id="addButton">ADD</button>
+                </div>
+
+                <!-- Блок відображення списку завдань -->
+                <div id="taskListContainer">
+                    <ul id="taskList" class="list-group shadow-sm">
+                        <!-- Сюди динамічно додаватимуться завдання -->
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Логіка (Об'єктно-орієнтований підхід) -->
+    <script>
+        // Глобальний масив для зберігання об'єктів завдань за вимогою ТЗ
+        const globalTaskList = [];
+
+        /**
+         * Допоміжна функція для форматування дати у вигляд "YYYY-MM-DD HH:MM"
+         */
+        function formatDate(date) {
+            const pad = (num) => String(num).padStart(2, '0');
+            const yyyy = date.getFullYear();
+            const mm = pad(date.getMonth() + 1);
+            const dd = pad(date.getDate());
+            const hh = pad(date.getHours());
+            const min = pad(date.getMinutes());
+            return `${yyyy}-${mm}-${dd} ${hh}:${min}`;
+        }
+
+        /**
+         * Клас, що представляє окреме завдання (Task/ToDoItem)
+         */
+        class ToDoItem {
+            constructor(title) {
+                this.title = title;
+                this.status = "todo"; // Початковий статус
+                this.startDate = formatDate(new Date()); // Поточна дата/час створення
+                this.endDate = null; // Заповнюється при виконанні
+            }
+
+            /**
+             * Метод для завершення завдання
+             */
+            complete() {
+                this.status = "done";
+                this.endDate = formatDate(new Date());
+            }
+        }
+
+        /**
+         * Клас для керування списком завдань (Бізнес-логіка та збереження в масив)
+         */
+        class TaskManager {
+            constructor(storageArray) {
+                this.tasks = storageArray; // Посилання на єдиний глобальний масив
+            }
+
+            /**
+             * Створення нового завдання та додавання його до масиву
+             */
+            addTask(title) {
+                if (!title.trim()) return null;
+                const newTask = new ToDoItem(title);
+                this.tasks.push(newTask);
+                return newTask;
+            }
+
+            /**
+             * Зміна статусу завдання на "done" за його індексом у масиві
+             */
+            completeTask(index) {
+                if (this.tasks[index] && this.tasks[index].status === "todo") {
+                    this.tasks[index].complete();
+                    return true;
+                }
+                return false;
+            }
+
+            /**
+             * Повертає актуальний список завдань
+             */
+            getTasks() {
+                return this.tasks;
+            }
+        }
+
+        /**
+         * Клас для керування інтерфейсом користувача (UI)
+         */
+        class AppUI {
+            constructor(manager) {
+                this.manager = manager;
+                
+                // Елементи DOM
+                this.inputField = document.getElementById('taskInput');
+                this.addButton = document.getElementById('addButton');
+                this.listContainer = document.getElementById('taskList');
+
+                this.initListeners();
+            }
+
+            /**
+             * Ініціалізація слухачів подій (Події введення, кліків)
+             */
+            initListeners() {
+                // Подія натискання на кнопку "ADD"
+                this.addButton.addEventListener('click', () => this.handleAddTask());
+
+                // Додавання завдання при натисканні клавіші Enter в полі введення
+                this.inputField.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.handleAddTask();
+                    }
+                });
+
+                // Делегування подій: клік по елементу списку завдань
+                this.listContainer.addEventListener('click', (e) => {
+                    // Шукаємо найближчий елемент li з класом task-item
+                    const item = e.target.closest('.task-item');
+                    if (item) {
+                        const index = parseInt(item.getAttribute('data-index'), 10);
+                        this.handleCompleteTask(index);
+                    }
+                });
+            }
+
+            /**
+             * Обробник створення завдання
+             */
+            handleAddTask() {
+                const title = this.inputField.value;
+                const task = this.manager.addTask(title);
+                
+                if (task) {
+                    this.inputField.value = ''; // Очищення поля введення
+                    this.render(); // Оновлення UI
+                }
+            }
+
+            /**
+             * Обробник виконання завдання
+             */
+            handleCompleteTask(index) {
+                const isUpdated = this.manager.completeTask(index);
+                if (isUpdated) {
+                    this.render(); // Оновлення UI
+                }
+            }
+
+            /**
+             * Метод для рендерингу (відображення) списку завдань на сторінці
+             */
+            render() {
+                // Очищаємо поточний список в DOM
+                this.listContainer.innerHTML = '';
+                const tasks = this.manager.getTasks();
+
+                if (tasks.length === 0) {
+                    this.listContainer.innerHTML = `<li class="list-group-item text-center text-muted py-3">Список завдань порожній</li>`;
+                    return;
+                }
+
+                // Перебираємо масив та генеруємо HTML для кожного елемента
+                tasks.forEach((task, index) => {
+                    const li = document.createElement('li');
+                    
+                    // Базові класи Bootstrap для елементів списку
+                    li.className = "list-group-item d-flex justify-content-between align-items-center task-item py-3";
+                    li.setAttribute('data-index', index);
+
+                    // Якщо статус "done", додаємо відповідні стилі Bootstrap
+                    if (task.status === "done") {
+                        li.className += " text-decoration-line-through text-muted bg-light";
+                        
+                        li.innerHTML = `
+                            <div>
+                                <span class="fw-semibold">${task.title}</span>
+                                <div class="small text-muted" style="font-size: 0.75rem;">Створено: ${task.startDate}</div>
+                            </div>
+                            <span class="badge bg-success rounded-pill px-3 py-2">Виконано в ${task.endDate.split(' ')[1]}</span>
+                        `;
+                    } else {
+                        // Якщо статус "todo"
+                        li.innerHTML = `
+                            <div>
+                                <span class="fw-semibold">${task.title}</span>
+                                <div class="small text-muted" style="font-size: 0.75rem;">Додано: ${task.startDate}</div>
+                            </div>
+                            <span class="badge bg-warning text-dark rounded-pill px-3 py-2">Активне</span>
+                        `;
+                    }
+
+                    this.listContainer.appendChild(li);
+                });
+            }
+        }
+
+        // Ініціалізація додатку після завантаження сторінки
+        document.addEventListener('DOMContentLoaded', () => {
+            const taskManager = new TaskManager(globalTaskList);
+            const app = new AppUI(taskManager);
+            app.render(); // Перший запуск для відображення порожнього стану
+        });
+    </script>
+</body>
+</html>
